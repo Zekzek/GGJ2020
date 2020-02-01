@@ -2638,6 +2638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b148562f98ff2404db8de50aecfb4e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 1809825976}
+  iconRef: {fileID: 1854551152455185318, guid: b54f66cb7d5912849aa0e5a9e4d9f0e7, type: 3}
   botInventoryGrid: {fileID: 1609555528}
   playerInventoryGrid: {fileID: 2120175674}
   bot: {fileID: 1604185753}
@@ -3033,6 +3035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa616bedc69f97d4fa0c5b3fbec19244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cells: []
 --- !u!1001 &1669739186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3442,6 +3445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa616bedc69f97d4fa0c5b3fbec19244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cells: []
 --- !u!1001 &231166805436179823
 PrefabInstance:
   m_ObjectHideFlags: 0
