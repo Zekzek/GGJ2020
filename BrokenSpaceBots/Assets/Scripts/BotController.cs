@@ -4,15 +4,28 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BotController : MonoBehaviour
 {
-    public enum Personality { DISABLED, MIMIC, BALL }
+    public enum Personality { DISABLED, MIMIC, FIX }
 
     [SerializeField]
     private Personality currentPersonality;
     public Personality CurrentPersonality
     {
-        get => currentPersonality; set
+        get => currentPersonality;
+        set
         {
             currentPersonality = value;
+            InitPersonality();
+        }
+    }
+
+    [SerializeField]
+    private string focusStationType;
+    public string FocusStationType
+    {
+        get => focusStationType;
+        set
+        {
+            focusStationType = value;
             InitPersonality();
         }
     }
@@ -41,15 +54,15 @@ public class BotController : MonoBehaviour
     {
         agent.ResetPath();
 
-        if (agent.isStopped && (CurrentPersonality == Personality.BALL || CurrentPersonality == Personality.MIMIC))
+        if (agent.isStopped && (CurrentPersonality == Personality.FIX || CurrentPersonality == Personality.MIMIC))
             agent.isStopped = false;
         if (!agent.isStopped && CurrentPersonality == Personality.DISABLED)
             agent.isStopped = true;
 
         switch (currentPersonality)
         {
-            case (Personality.BALL):
-                agent.destination = new Vector3(-0.5f, 0.5f, 3.5f);
+            case (Personality.FIX):
+                GoToNearestStation("Ball");
                 break;
             default:
                 break;
@@ -65,5 +78,22 @@ public class BotController : MonoBehaviour
             direction.Normalize();
 
         agent.Move(direction * Time.deltaTime * agent.speed);
+    }
+
+    private void GoToNearestStation(string stationType)
+    {
+        float closestSquareDistance = float.MaxValue;
+        Station closestStation = null;
+
+        Object[] stations = FindObjectsOfType(typeof(Station));
+        foreach (Station station in stations)
+            if ((station.transform.position - transform.position).sqrMagnitude < closestSquareDistance)
+            {
+                closestSquareDistance = (station.transform.position - transform.position).sqrMagnitude;
+                closestStation = station;
+            }
+
+        if (closestStation != null)
+            agent.destination = closestStation.transform.position;
     }
 }
