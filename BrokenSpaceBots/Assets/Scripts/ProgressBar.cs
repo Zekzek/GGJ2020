@@ -9,8 +9,8 @@ public class ProgressBar : MonoBehaviour
     public float maximum;
     public float current;
     public Image mask;
-    //public Image fill;
-    //public Color color;
+    public Image fill;
+    public Color color;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +27,9 @@ public class ProgressBar : MonoBehaviour
 
     void GetCurrentFill()
     {
-        //float fillAmount = (float)current/(float)maximum;
-        //mask.fillAmount = fillAmount;
+        float fillAmount = (float)current/(float)maximum;
+        fill.fillAmount = fillAmount;
 
-        //fill.color = color;
+        fill.color = color;
     }
 }
