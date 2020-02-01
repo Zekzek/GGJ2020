@@ -159,7 +159,7 @@ MonoBehaviour:
   m_RunstepLenghten: 0
   m_JumpSpeed: 2
   m_StickToGroundForce: 1
-  m_GravityMultiplier: 0.75
+  m_GravityMultiplier: 0.5
   m_MouseLook:
     XSensitivity: 2
     YSensitivity: 2
@@ -352,10 +352,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.5
-  m_Radius: 0.97
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 90
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
