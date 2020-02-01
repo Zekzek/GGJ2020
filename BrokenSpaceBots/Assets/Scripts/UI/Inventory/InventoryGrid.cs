@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class InventoryGrid : MonoBehaviour
 {
-    private InventoryGridCell[] cells;
+    [HideInInspector]
+    public InventoryGridCell[] cells;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,7 +15,7 @@ public class InventoryGrid : MonoBehaviour
             .ToArray();
     }
 
-    public void SetUpInventory(BasicInventory bi)
+    public void SetUpWithInventory(BasicInventory bi)
     {
         for (int n=0; n < cells.Length; n++)
         {
@@ -25,14 +24,19 @@ public class InventoryGrid : MonoBehaviour
 
             if (bi.IsInBounds(x,y))
             {
-                cells[n].SetItem(bi.GetItemInGrid(x,y));
+                cells[n].SetGridCell(bi, x, y);
             }
             else
             {
                 Debug.LogError("InventoryGrid out of bounds of real inventory. Index=" + n);
-                cells[n].SetItem(InventoryItemType.Empty);
+                cells[n].ClearCell();
             }
         }
+    }
+
+    public void ClearInventory()
+    {
+
     }
 
     // Update is called once per frame

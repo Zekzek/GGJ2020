@@ -23,6 +23,17 @@ public class BasicInventory
 
         return items[index];
     }
+
+    public void SetItemInGrid(int x, int y, InventoryItemType item)
+    {
+        int index = ROW_WIDTH * y + x;
+        if (index >= items.Length)
+        {
+            throw new ArgumentOutOfRangeException("Out of bounds [" + x + "," + y + "]");
+        }
+
+        items[index] = item;
+    }
     public bool IsInBounds(int x, int y)
     {
         int index = ROW_WIDTH * y + x;

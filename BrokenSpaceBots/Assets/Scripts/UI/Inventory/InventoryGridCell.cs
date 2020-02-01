@@ -1,40 +1,72 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryGridCell : MonoBehaviour
+public class InventoryGridCell : MonoBehaviour, IPointerClickHandler
 {
     public InventoryItemIconRef iconRef;
     public Image icon;
+
+    [HideInInspector]
+    public BasicInventory inventory;
+    private int x, y;
+
+    public event Action<InventoryGridCell> OnGridCellClick = delegate { }; 
 
     // Start is called before the first frame update
     void Start()
     {
     }
-    public void SetItem(InventoryItemType item)
+
+    public void SetGridCell(BasicInventory inventory, int x, int y)
     {
-        switch(item)
-        {
-            case InventoryItemType.Empty:
-                icon.sprite = iconRef.emptyIconRef;
-                break;
-            case InventoryItemType.Bolt:
-                icon.sprite = iconRef.boltIconRef;
-                break;
-            case InventoryItemType.Chip:
-                icon.sprite = iconRef.chipIconRef;
-                break;
-            case InventoryItemType.Resistor:
-                icon.sprite = iconRef.resistorIconRef;
-                break;
-            default:
-                Debug.LogError("Unknown type passed in for item type: " + item.ToString() + ". No icon could be made.");
-                break;
-        }
+        this.inventory = inventory;
+        this.x = x;
+        this.y = y;
+
+        UpdateCell();
+    }
+
+    public void UpdateCell()
+    {
+        UpdateIcon(inventory.GetItemInGrid(x,y));
+    }
+
+    public void ClearCell()
+    {
+        inventory = null;
+        icon.sprite = iconRef.emptyIconRef;
+    }
+
+    private void UpdateIcon(InventoryItemType item)
+    {
+        icon.sprite = iconRef.GetSpriteForItem(item);
+    }
+
+    public InventoryItemType GetItem()
+    {
+        return inventory.GetItemInGrid(x,y);
+    }
+
+    public InventoryItemType SetItem(InventoryItemType item)
+    {
+        InventoryItemType oldItem = inventory.GetItemInGrid(x, y);
+        inventory.SetItemInGrid(x,y,item);
+
+        UpdateCell();
+
+        return oldItem;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnGridCellClick(this);
     }
 }
