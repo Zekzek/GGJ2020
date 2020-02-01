@@ -4,6 +4,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BotController : MonoBehaviour
 {
+    private const float GOAL_DISTANCE_TO_STATION = 1f;
+    private const float GOAL_SQR_DISTANCE_TO_STATION = GOAL_DISTANCE_TO_STATION * GOAL_DISTANCE_TO_STATION;
+
+    private const float TIME_BETWEEN_FIX_TICKS = 0.5f;
+
     public enum Personality { DISABLED, MIMIC, FIX }
 
     [SerializeField]
@@ -30,24 +35,27 @@ public class BotController : MonoBehaviour
         }
     }
 
+    private float timeSinceLastFix;
+
+    private Station targetStation;
+
     NavMeshAgent agent;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = GOAL_DISTANCE_TO_STATION;
         InitPersonality();
     }
 
     private void Update()
     {
-        switch (currentPersonality)
-        {
-            case (Personality.MIMIC):
-                MimicUpdate();
-                break;
-            default:
-                break;
-        }
+        timeSinceLastFix += Time.deltaTime;
+
+        if (currentPersonality == Personality.MIMIC)
+            MimicUpdate();
+        if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
+            CheckStationFixProximity();
     }
 
     private void InitPersonality()
@@ -59,14 +67,39 @@ public class BotController : MonoBehaviour
         if (!agent.isStopped && CurrentPersonality == Personality.DISABLED)
             agent.isStopped = true;
 
-        switch (currentPersonality)
+        if (currentPersonality == Personality.FIX)
         {
-            case (Personality.FIX):
-                GoToNearestStation("Ball");
-                break;
-            default:
-                break;
+            Station mostUrgentStation = GetMostUrgentStation(focusStationType);
+            if (mostUrgentStation != null)
+            {
+                targetStation = mostUrgentStation;
+                agent.destination = targetStation.transform.position;
+            }
         }
+    }
+
+    private void FixMostUrgentStation()
+    {
+        Station mostUrgentStation = GetMostUrgentStation(focusStationType);
+        if (mostUrgentStation != null)
+        {
+            targetStation = mostUrgentStation;
+            agent.destination = targetStation.transform.position;
+        }
+    }
+
+    private void CheckStationFixProximity()
+    {
+        Debug.Log("check");
+        if ((targetStation.transform.position - transform.position).sqrMagnitude < GOAL_SQR_DISTANCE_TO_STATION + 1)
+            if (string.Equals(targetStation.Type, focusStationType))
+            {
+                Debug.Log("fix");
+                timeSinceLastFix = 0;
+                targetStation.Fix(1);
+                FixMostUrgentStation();
+            }
+        //TODO: handle distactable logic
     }
 
     private void MimicUpdate()
@@ -80,20 +113,29 @@ public class BotController : MonoBehaviour
         agent.Move(direction * Time.deltaTime * agent.speed);
     }
 
-    private void GoToNearestStation(string stationType)
+    private Station GetMostUrgentStation(string stationType)
     {
-        float closestSquareDistance = float.MaxValue;
-        Station closestStation = null;
+        float lowestScore = float.MaxValue;
+        Station mostUrgentStation = null;
 
         Object[] stations = FindObjectsOfType(typeof(Station));
         foreach (Station station in stations)
-            if ((station.transform.position - transform.position).sqrMagnitude < closestSquareDistance)
+            if (GetStationPriorityScore(station) < lowestScore)
             {
-                closestSquareDistance = (station.transform.position - transform.position).sqrMagnitude;
-                closestStation = station;
+                lowestScore = GetStationPriorityScore(station);
+                mostUrgentStation = station;
             }
 
-        if (closestStation != null)
-            agent.destination = closestStation.transform.position;
+        Debug.Log("MostUrgentStation " + lowestScore);
+
+        return mostUrgentStation;
+    }
+
+    private float GetStationPriorityScore(Station station)
+    {
+        float percentHealth = station.CurrentHealth / (float)station.MaxHealth;
+        float score = (station.transform.position - transform.position).sqrMagnitude + 1000 * percentHealth;
+        Debug.Log("    " + station + ": " + score);
+        return score;
     }
 }
