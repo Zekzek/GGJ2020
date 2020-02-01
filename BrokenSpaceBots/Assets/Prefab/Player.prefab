@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8685114723099401223}
   - component: {fileID: 8685114723099401222}
   - component: {fileID: 8685114723099401221}
+  - component: {fileID: 1815751455519860676}
+  - component: {fileID: 8059986390221359900}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -252,6 +254,32 @@ MonoBehaviour:
   m_FootstepSounds: []
   m_JumpSound: {fileID: 0}
   m_LandSound: {fileID: 0}
+--- !u!114 &1815751455519860676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685114723099401216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424259e1d804ca74da2d1f403f6bf100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+    items: 000000000000000000000000000000000000000000000000
+--- !u!114 &8059986390221359900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685114723099401216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be82cb8a36bfa641b07651c79775bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8685114723296065111
 GameObject:
   m_ObjectHideFlags: 0
