@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emptyIconRef: {fileID: 21300000, guid: 09278692d94f2b14c834c33ab8275249, type: 3}
-  boltIconRef: {fileID: 21300000, guid: 49b611e658efbf443b686a4036f74fe3, type: 3}
-  resistorIconRef: {fileID: 21300000, guid: 9866a92691696b346901281f2b329034, type: 3}
-  chipIconRef: {fileID: 21300000, guid: 5b1a64ea234fb2343b8d0686c51280de, type: 3}
+  boltIconRef: {fileID: 21300000, guid: 416576688a5d5294fb34d4071c443356, type: 3}
+  resistorIconRef: {fileID: 21300000, guid: 2cdc8f58962e4774599469b6ffd44a52, type: 3}
+  chipIconRef: {fileID: 21300000, guid: dad1f1935302f7a4fa1854c5e7fd5277, type: 3}
