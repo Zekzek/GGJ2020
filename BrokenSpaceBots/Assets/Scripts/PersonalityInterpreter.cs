@@ -4,21 +4,33 @@ using UnityEngine;
 public class PersonalityInterpreter : MonoBehaviour
 {
     private static readonly InventoryItemType[] FIX_HEALTH_STATION = {
-        InventoryItemType.Bolt, InventoryItemType.Empty, InventoryItemType.Bolt,
-        InventoryItemType.Empty, InventoryItemType.Chip, InventoryItemType.Empty,
+        InventoryItemType.Empty, InventoryItemType.Bolt, InventoryItemType.Empty,
+        InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt,
+        InventoryItemType.Empty, InventoryItemType.Bolt, InventoryItemType.Empty
+    };
+
+    private static readonly InventoryItemType[] FIX_DEFENSE_STATION = {
+        InventoryItemType.Empty, InventoryItemType.Resistor, InventoryItemType.Empty,
+        InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt,
         InventoryItemType.Bolt, InventoryItemType.Empty, InventoryItemType.Bolt
     };
 
-    private static readonly InventoryItemType[] FIX_WEAPON_STATION = {
-        InventoryItemType.Empty, InventoryItemType.Resistor, InventoryItemType.Empty,
-        InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt,
-        InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt
+    private static readonly InventoryItemType[] FIX_OXYGEN_STATION = {
+        InventoryItemType.Empty, InventoryItemType.Empty, InventoryItemType.Empty,
+        InventoryItemType.Empty, InventoryItemType.Chip, InventoryItemType.Empty,
+        InventoryItemType.Resistor, InventoryItemType.Resistor, InventoryItemType.Resistor
+    };
+
+    private static readonly InventoryItemType[] FIX_ENGINE_STATION = {
+        InventoryItemType.Resistor, InventoryItemType.Empty, InventoryItemType.Resistor,
+        InventoryItemType.Empty, InventoryItemType.Chip, InventoryItemType.Empty,
+        InventoryItemType.Resistor, InventoryItemType.Chip, InventoryItemType.Resistor
     };
 
     private static readonly InventoryItemType[] KILL_STATION = {
         InventoryItemType.Empty, InventoryItemType.Empty, InventoryItemType.Empty,
         InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt,
-        InventoryItemType.Bolt, InventoryItemType.Chip, InventoryItemType.Bolt
+        InventoryItemType.Bolt, InventoryItemType.Empty, InventoryItemType.Bolt
     };
 
     private InventoryHolder holder;
@@ -38,10 +50,20 @@ public class PersonalityInterpreter : MonoBehaviour
             botController.CurrentPersonality = BotController.Personality.FIX;
             botController.FocusStationType = "Health";
         }
-        else if (holder.inventory.items.SequenceEqual(FIX_WEAPON_STATION))
+        else if (holder.inventory.items.SequenceEqual(FIX_DEFENSE_STATION))
         {
             botController.CurrentPersonality = BotController.Personality.FIX;
-            botController.FocusStationType = "Weapon";
+            botController.FocusStationType = "Defense";
+        }
+        else if (holder.inventory.items.SequenceEqual(FIX_OXYGEN_STATION))
+        {
+            botController.CurrentPersonality = BotController.Personality.FIX;
+            botController.FocusStationType = "Oxygen";
+        }
+        else if (holder.inventory.items.SequenceEqual(FIX_ENGINE_STATION))
+        {
+            botController.CurrentPersonality = BotController.Personality.FIX;
+            botController.FocusStationType = "Engine";
         }
         else if (holder.inventory.items.SequenceEqual(KILL_STATION))
             botController.CurrentPersonality = BotController.Personality.KILL;
