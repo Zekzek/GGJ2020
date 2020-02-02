@@ -10,7 +10,7 @@ public class InventoryGrid : MonoBehaviour
     void Awake()
     {
         cells = GetComponentsInChildren<InventoryGridCell>()
-            .OrderBy(go => go.transform.position.y)
+            .OrderBy(go => -go.transform.position.y)
             .ThenBy(go => go.transform.position.x)
             .ToArray();
     }

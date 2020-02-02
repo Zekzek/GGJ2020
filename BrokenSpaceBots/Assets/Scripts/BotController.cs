@@ -53,7 +53,7 @@ public class BotController : MonoBehaviour
 
     public BotSoundMaster soundMaster;
 
-    private void Start()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = GOAL_DISTANCE_TO_STATION;
@@ -107,11 +107,11 @@ public class BotController : MonoBehaviour
         {
             if (mostUrgentStation != targetStation)
             {
-            targetStation = mostUrgentStation;
-            agent.destination = targetStation.transform.position;
+                targetStation = mostUrgentStation;
+                agent.destination = targetStation.transform.position;
                 soundMaster.StartMoving();
+            }
         }
-    }
         else
         {
             soundMaster.StopLoop();

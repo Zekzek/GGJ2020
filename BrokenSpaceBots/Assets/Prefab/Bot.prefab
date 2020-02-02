@@ -490,7 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPersonality: 2
   focusStationType: Oxygen
-  hps: 2
+  hps: 5
   player: {fileID: 0}
   inventory: {fileID: 567664195}
   soundMaster: {fileID: 3740394010139139929}
