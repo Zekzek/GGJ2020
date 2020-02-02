@@ -19,7 +19,7 @@ public class CraftingInventoryScreen : MonoBehaviour
     private InventoryGridCell lastSelectedEmptyCell;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         ResetScreen();
 
