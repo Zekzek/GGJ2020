@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class UseBotBack : MonoBehaviour
 {
+    public event Action<BotController> OnHackBot = delegate { };
+
+
     bool m_isAxisInUse = false;
 
     // Start is called before the first frame update
@@ -38,9 +42,12 @@ public class UseBotBack : MonoBehaviour
                 float dotProduct = Vector3.Dot(botBackPanel.transform.forward, transform.forward);
                 if (dotProduct > 0.25) // If facing roughly same direction.
                 {
-                    Debug.Log("Hack da panel!");
+                    Debug.Log("Hack da bot!");
+                    OnHackBot(botBackPanel.parentBot);
                 }
             }
         }
     }
+
+
 }
