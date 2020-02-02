@@ -488,8 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdda392213710b49a79923b3c048ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPersonality: 2
-  focusStationType: Oxygen
+  currentPersonality: 1
+  focusStationType: 
   hps: 5
   player: {fileID: 0}
   inventory: {fileID: 567664195}
