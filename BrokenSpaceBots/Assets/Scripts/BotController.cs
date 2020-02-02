@@ -9,7 +9,7 @@ public class BotController : MonoBehaviour
 
     private const float TIME_BETWEEN_FIX_TICKS = 1f;
 
-    public enum Personality { FREEZE, DISABLED, MIMIC, KILL, FIX }
+    public enum Personality { FREEZE, DISABLED, FIX, MIMIC, KILL, SPIN, STARE }
 
     [SerializeField]
     private Personality currentPersonality;
@@ -35,14 +35,17 @@ public class BotController : MonoBehaviour
         }
     }
 
-    public float hps = 2;
+    [SerializeField]
+    private float hps = 2;
 
+    [SerializeField]
+    private PlayerController player;
 
     private float timeSinceLastFix;
 
     private Station targetStation;
 
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     public InventoryHolder inventory;
 
@@ -59,7 +62,9 @@ public class BotController : MonoBehaviour
 
         if (currentPersonality == Personality.MIMIC)
             MimicUpdate();
-        if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
+        else if (currentPersonality == Personality.STARE)
+            StareUpdate();
+        else if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
             CheckStationFixProximity();
     }
 
@@ -114,6 +119,11 @@ public class BotController : MonoBehaviour
             direction.Normalize();
 
         agent.Move(direction * Time.deltaTime * agent.speed);
+    }
+
+    private void StareUpdate()
+    {
+        //transform.LookAt(player.transform);
     }
 
     private Station GetMostUrgentStation(string stationType)
