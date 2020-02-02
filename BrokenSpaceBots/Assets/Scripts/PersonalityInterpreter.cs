@@ -26,19 +26,14 @@ public class PersonalityInterpreter : MonoBehaviour
     private InventoryHolder holder;
     private BotController botController;
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         holder = GetComponent<InventoryHolder>();
         botController = GetComponent<BotController>();
-
-        
+        Reinterpret();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reinterpret()
     {
         if(holder.inventory.items.SequenceEqual(FIX_HEALTH_STATION))
         {

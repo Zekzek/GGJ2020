@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         while (botHackScreen.gameObject.activeSelf)
             yield return null;
 
-
+        botToHack.GetComponent<PersonalityInterpreter>().Reinterpret();
         // TODO Here goes the part where the bot starts acting up again.
 
         firstPersonController.m_MouseLook.SetCursorLock(true);
