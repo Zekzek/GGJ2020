@@ -56,7 +56,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &3743108287406636746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 57db871d0410ec44486e3d1d0a9278e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57db871d0410ec44486e3d1d0a9278e7,
         type: 3}
@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 57db871d0410ec44486e3d1d0a9278e7,
         type: 3}
       propertyPath: m_Name
-      value: robot_1057sat
+      value: robot_model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57db871d0410ec44486e3d1d0a9278e7, type: 3}
