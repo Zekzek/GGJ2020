@@ -64,13 +64,15 @@ public class BotController : MonoBehaviour
 
         if (currentPersonality == Personality.MIMIC)
             MimicUpdate();
+        else if (currentPersonality == Personality.SPIN)
+            SpinUpdate();
         else if (currentPersonality == Personality.STARE)
             StareUpdate();
         else if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
             CheckStationFixProximity();
 
         // Random ambient vocal
-        if (Random.Range(0,3200) == 13)
+        if (Random.Range(0, 3200) == 13)
         {
             PlayVocal();
         }
@@ -132,9 +134,18 @@ public class BotController : MonoBehaviour
         agent.Move(direction * Time.deltaTime * agent.speed);
     }
 
+    private void SpinUpdate()
+    {
+        transform.Rotate(Vector3.up, Time.deltaTime * 90f);
+    }
+
     private void StareUpdate()
     {
-        //transform.LookAt(player.transform);
+        Vector3 relativePlayerPosition = transform.InverseTransformPoint(player.transform.position).normalized;
+        if (relativePlayerPosition.x > 0.1f)
+            transform.Rotate(Vector3.up, Time.deltaTime * 45f);
+        else if (relativePlayerPosition.x < -0.1f)
+            transform.Rotate(Vector3.up, Time.deltaTime * -45f);
     }
 
     private Station GetMostUrgentStation(string stationType)
