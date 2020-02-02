@@ -9,7 +9,7 @@ public class BotController : MonoBehaviour
 
     private const float TIME_BETWEEN_FIX_TICKS = 1f;
 
-    public enum Personality { DISABLED, MIMIC, FIX }
+    public enum Personality { DISABLED, MIMIC, KILL, FIX }
 
     [SerializeField]
     private Personality currentPersonality;
