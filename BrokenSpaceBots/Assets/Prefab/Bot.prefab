@@ -247,6 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPersonality: 2
   focusStationType: Oxygen
+  hps: 2
+  inventory: {fileID: 567664195}
 --- !u!114 &567664195
 MonoBehaviour:
   m_ObjectHideFlags: 0

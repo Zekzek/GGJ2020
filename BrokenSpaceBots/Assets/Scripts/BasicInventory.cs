@@ -34,6 +34,19 @@ public class BasicInventory
 
         items[index] = item;
     }
+
+    public bool AddItemInEmptySlot(InventoryItemType item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == InventoryItemType.Empty)
+            {
+                items[i] = item;
+                return true;
+            }
+        }
+        return false;
+    }
     public bool IsInBounds(int x, int y)
     {
         int index = ROW_WIDTH * y + x;

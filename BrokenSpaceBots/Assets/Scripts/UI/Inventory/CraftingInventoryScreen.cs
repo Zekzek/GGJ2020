@@ -10,14 +10,16 @@ public class CraftingInventoryScreen : MonoBehaviour
     public InventoryGrid botInventoryGrid;
     public InventoryGrid playerInventoryGrid;
 
+    public Button closeButton;
+
     public InventoryHolder bot;
     public InventoryHolder player;
 
     private InventoryItemType cursorItem;
-    private InventoryGridCell lastSelectedCell;
+    private InventoryGridCell lastSelectedEmptyCell;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ResetScreen();
 
@@ -31,19 +33,20 @@ public class CraftingInventoryScreen : MonoBehaviour
             cell.OnGridCellClick += HandleGridCellClick;
         }
 
-        Populate();
+        closeButton.onClick.AddListener(Close);
+
+        //Populate();
     }
-    private void OnEnable()
+    public void Startup()
     {
         ResetScreen();
-
         Populate();
     }
     private void ResetScreen()
     {
         cursorItem = InventoryItemType.Empty;
         cursor.sprite = iconRef.emptyIconRef;
-        lastSelectedCell = null;
+        lastSelectedEmptyCell = null;
     }
 
     private void Populate()
@@ -72,8 +75,30 @@ public class CraftingInventoryScreen : MonoBehaviour
             // Swap old cursor item into inventory
             cell.SetItem(oldItem);
 
-
-            lastSelectedCell = cell; // mostly debugging
+            if (oldItem == InventoryItemType.Empty)
+            {
+                lastSelectedEmptyCell = cell;
+            }
         }
+    }
+
+    void Close()
+    {
+        if (cursorItem != InventoryItemType.Empty)
+        {
+            if (!player.inventory.AddItemInEmptySlot(cursorItem))
+            {
+                if (lastSelectedEmptyCell != null)
+                {
+                    lastSelectedEmptyCell.SetItem(cursorItem);
+                }
+                else
+                {
+                    Debug.LogWarning("Couldn't replace item back into empty space. Oops!");
+                }
+            }
+        }
+        ResetScreen();
+        gameObject.SetActive(false);
     }
 }

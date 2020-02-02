@@ -1,9 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class UseBotBack : MonoBehaviour
 {
+    public event Action<BotController> OnHackBot = delegate { };
+
+
+    bool m_isAxisInUse = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,29 +17,37 @@ public class UseBotBack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetAxis("Fire1") > 0 Input.Get)
-            CheckUseBot();
+        if (Input.GetAxisRaw("Fire1") != 0)
+        {
+            if (m_isAxisInUse == false)
+            {
+                // Call your event function here.
+                m_isAxisInUse = true;
+                CheckUseBot();
+            }
+        }
+        if (Input.GetAxisRaw("Fire1") == 0)
+        {
+            m_isAxisInUse = false;
+        }
     }
 
     void CheckUseBot()
     {
-        /*
-        Collider[] nearbyObjects = Physics.Raycast(transform.position, transform.forward, 2f);
-        foreach (Collider collider in nearbyObjects)
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, 2f))
         {
-            BotBackPanel botBackPanel = collider.GetComponent<BotBackPanel>();
+            BotBackPanel botBackPanel = hitInfo.collider.GetComponent<BotBackPanel>();
             if (botBackPanel != null)
             {
                 float dotProduct = Vector3.Dot(botBackPanel.transform.forward, transform.forward);
-
-                Debug.Log(botBackPanel.transform.forward + " " + transform.forward + " " + dotProduct);
                 if (dotProduct > 0.25) // If facing roughly same direction.
                 {
-                    Debug.Log("Hack da panel!");
-                    break;
+                    Debug.Log("Hack da bot!");
+                    OnHackBot(botBackPanel.parentBot);
                 }
             }
         }
-        */
     }
+
+
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8685114723099401223}
   - component: {fileID: 8685114723099401222}
   - component: {fileID: 8685114723099401221}
+  - component: {fileID: 916829819133453500}
   - component: {fileID: 1815751455519860676}
   - component: {fileID: 8059986390221359900}
   - component: {fileID: -9027947893825909001}
@@ -255,6 +256,23 @@ MonoBehaviour:
   m_FootstepSounds: []
   m_JumpSound: {fileID: 0}
   m_LandSound: {fileID: 0}
+--- !u!114 &916829819133453500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685114723099401216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c55e7adc009aa46bfa35db00e1d25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botHackScreen: {fileID: 0}
+  firstPersonController: {fileID: 8685114723099401221}
+  useBotBack: {fileID: -9027947893825909001}
+  itemPickUp: {fileID: 8059986390221359900}
+  inventory: {fileID: 1815751455519860676}
 --- !u!114 &1815751455519860676
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class BotController : MonoBehaviour
 
     private const float TIME_BETWEEN_FIX_TICKS = 1f;
 
-    public enum Personality { DISABLED, MIMIC, KILL, FIX }
+    public enum Personality { FREEZE, DISABLED, MIMIC, KILL, FIX }
 
     [SerializeField]
     private Personality currentPersonality;
@@ -44,6 +44,8 @@ public class BotController : MonoBehaviour
 
     NavMeshAgent agent;
 
+    public InventoryHolder inventory;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -67,7 +69,7 @@ public class BotController : MonoBehaviour
 
         if (agent.isStopped && (CurrentPersonality == Personality.FIX || CurrentPersonality == Personality.MIMIC))
             agent.isStopped = false;
-        if (!agent.isStopped && CurrentPersonality == Personality.DISABLED)
+        if (!agent.isStopped && (CurrentPersonality == Personality.DISABLED || CurrentPersonality == Personality.FREEZE))
             agent.isStopped = true;
 
         if (currentPersonality == Personality.FIX)

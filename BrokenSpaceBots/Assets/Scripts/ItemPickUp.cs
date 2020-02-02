@@ -33,11 +33,6 @@ public class ItemPickUp : MonoBehaviour
 
     private void PickUp(InventoryItemType itemType)
     {
-        for (int i = 0; i < holder.inventory.items.Length; i++)
-            if (holder.inventory.items[i] == InventoryItemType.Empty)
-            {
-                holder.inventory.items[i] = itemType;
-                break;
-            }
+        holder.inventory.AddItemInEmptySlot(itemType);
     }
 }
