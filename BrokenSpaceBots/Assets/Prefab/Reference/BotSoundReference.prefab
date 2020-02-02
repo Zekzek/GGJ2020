@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4915486260284430388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4915486260284430378}
+  - component: {fileID: 4915486260284430389}
+  m_Layer: 0
+  m_Name: BotSoundReference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4915486260284430378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915486260284430388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0.6, z: 0.6999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4915486260284430389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915486260284430388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa716c5e039b15438ebadbe69f9f370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botFixedSounds:
+  - {fileID: 8300000, guid: d60828e2e7bbd564cb332c0c2a856ed1, type: 3}
+  - {fileID: 8300000, guid: ec2903d471e90554cae1748c39edb2e2, type: 3}
+  - {fileID: 8300000, guid: 5a27de97363ef6341a3e5775ca1377b6, type: 3}
+  botBrokenSounds:
+  - {fileID: 8300000, guid: 2a4acfc78cbc65f4bb7d83c273b2b3ca, type: 3}
+  - {fileID: 8300000, guid: 5accab6ca3518234b88d9b62ab55f2a6, type: 3}
+  - {fileID: 8300000, guid: 1aaf91b004ef2fb478547a0db9f6aff9, type: 3}
+  botMovementSounds:
+  - {fileID: 8300000, guid: 2d1ffad9cc304994e93171aea0f5ac0a, type: 3}
+  - {fileID: 8300000, guid: f8d1bdfccd501414a8a463cfb8d6fd46, type: 3}
+  - {fileID: 8300000, guid: 8f0436983f088184999e415f48fcc1a9, type: 3}

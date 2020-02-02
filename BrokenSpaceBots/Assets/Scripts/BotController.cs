@@ -46,6 +46,8 @@ public class BotController : MonoBehaviour
 
     public InventoryHolder inventory;
 
+    public BotSoundMaster soundMaster;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -61,6 +63,12 @@ public class BotController : MonoBehaviour
             MimicUpdate();
         if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
             CheckStationFixProximity();
+
+        // Random ambient vocal
+        if (Random.Range(0,3200) == 13)
+        {
+            PlayVocal();
+        }
     }
 
     private void InitPersonality()
@@ -96,13 +104,16 @@ public class BotController : MonoBehaviour
     private void CheckStationFixProximity()
     {
         if ((targetStation.transform.position - transform.position).sqrMagnitude < GOAL_SQR_DISTANCE_TO_STATION + 1)
+        {
+
             if (string.Equals(targetStation.Type, focusStationType))
             {
                 timeSinceLastFix = 0;
                 targetStation.Fix(hps);
                 FixMostUrgentStation();
             }
-        //TODO: handle distactable logic
+            //TODO: handle distactable logic
+        }
     }
 
     private void MimicUpdate()
@@ -138,5 +149,17 @@ public class BotController : MonoBehaviour
         float percentHealth = station.CurrentHealth / (float)station.MaxHealth;
         float score = (station.transform.position - transform.position).sqrMagnitude + 1000 * percentHealth;
         return score;
+    }
+
+    private void PlayVocal()
+    {
+        if (currentPersonality == Personality.DISABLED || currentPersonality == Personality.FREEZE)
+        {
+            soundMaster.PlayBrokenSound();
+        }
+        else
+        {
+            soundMaster.PlayFixSound();
+        }
     }
 }

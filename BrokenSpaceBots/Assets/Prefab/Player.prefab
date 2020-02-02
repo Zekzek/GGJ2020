@@ -68,8 +68,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.509
+  m_Pitch: 1.59
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_IsWalking: 0
   m_WalkSpeed: 3
   m_RunSpeed: 5
-  m_RunstepLenghten: 0
+  m_RunstepLenghten: 1
   m_JumpSpeed: 2
   m_StickToGroundForce: 1
   m_GravityMultiplier: 0.5
@@ -193,10 +193,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_UseHeadBob: 0
+  m_UseHeadBob: 1
   m_HeadBob:
-    HorizontalBobRange: 0.33
-    VerticalBobRange: 0.33
+    HorizontalBobRange: 0.05
+    VerticalBobRange: 0.05
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -248,13 +248,15 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 1
+    VerticaltoHorizontalRatio: 0.5
   m_JumpBob:
     BobDuration: 0
     BobAmount: 0
-  m_StepInterval: 0
-  m_FootstepSounds: []
-  m_JumpSound: {fileID: 0}
+  m_StepInterval: 2
+  m_FootstepSounds:
+  - {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  - {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 0}
 --- !u!114 &916829819133453500
 MonoBehaviour:
