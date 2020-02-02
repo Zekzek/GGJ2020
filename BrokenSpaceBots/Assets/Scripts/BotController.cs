@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BotController : MonoBehaviour
 {
-    private const float GOAL_DISTANCE_TO_STATION = 1f;
+    private const float GOAL_DISTANCE_TO_STATION = 1.5f;
     private const float GOAL_SQR_DISTANCE_TO_STATION = GOAL_DISTANCE_TO_STATION * GOAL_DISTANCE_TO_STATION;
 
     private const float TIME_BETWEEN_FIX_TICKS = 1f;
@@ -43,6 +43,8 @@ public class BotController : MonoBehaviour
 
     private float timeSinceLastFix;
 
+    private float timeSinceLastSound = 0f;
+
     private Station targetStation;
 
     private NavMeshAgent agent;
@@ -68,11 +70,14 @@ public class BotController : MonoBehaviour
             SpinUpdate();
         else if (currentPersonality == Personality.STARE)
             StareUpdate();
-        else if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
-            CheckStationFixProximity();
+        else if (currentPersonality == Personality.FIX)
+        {
+            if (targetStation != null && timeSinceLastFix > TIME_BETWEEN_FIX_TICKS)
+                CheckStationFixProximity();
+        }
 
         // Random ambient vocal
-        if (Random.Range(0, 3200) == 13)
+        if (timeSinceLastSound + 2.2f < Time.time && Random.Range(0,3200) == 13)
         {
             PlayVocal();
         }
@@ -80,6 +85,7 @@ public class BotController : MonoBehaviour
 
     private void InitPersonality()
     {
+        soundMaster.StopLoop();
         agent.ResetPath();
 
         if (agent.isStopped && (CurrentPersonality == Personality.FIX || CurrentPersonality == Personality.MIMIC))
@@ -89,22 +95,26 @@ public class BotController : MonoBehaviour
 
         if (currentPersonality == Personality.FIX)
         {
-            Station mostUrgentStation = GetMostUrgentStation(focusStationType);
-            if (mostUrgentStation != null)
-            {
-                targetStation = mostUrgentStation;
-                agent.destination = targetStation.transform.position;
+            targetStation = null;
+            FixMostUrgentStation();
             }
         }
-    }
 
     private void FixMostUrgentStation()
     {
         Station mostUrgentStation = GetMostUrgentStation(focusStationType);
         if (mostUrgentStation != null)
         {
+            if (mostUrgentStation != targetStation)
+            {
             targetStation = mostUrgentStation;
             agent.destination = targetStation.transform.position;
+                soundMaster.StartMoving();
+        }
+    }
+        else
+        {
+            soundMaster.StopLoop();
         }
     }
 
@@ -112,13 +122,11 @@ public class BotController : MonoBehaviour
     {
         if ((targetStation.transform.position - transform.position).sqrMagnitude < GOAL_SQR_DISTANCE_TO_STATION + 1)
         {
+            soundMaster.StartFixing();
 
-            if (string.Equals(targetStation.Type, focusStationType))
-            {
                 timeSinceLastFix = 0;
                 targetStation.Fix(hps);
                 FixMostUrgentStation();
-            }
             //TODO: handle distactable logic
         }
     }
@@ -155,12 +163,16 @@ public class BotController : MonoBehaviour
 
         Object[] stations = FindObjectsOfType(typeof(Station));
         foreach (Station station in stations)
+        {
+            if (string.Equals(station.Type, focusStationType))
+            {
             if (GetStationPriorityScore(station) < lowestScore)
             {
                 lowestScore = GetStationPriorityScore(station);
                 mostUrgentStation = station;
             }
-
+            }
+        }
 
         return mostUrgentStation;
     }
@@ -172,15 +184,16 @@ public class BotController : MonoBehaviour
         return score;
     }
 
-    private void PlayVocal()
+    public void PlayVocal()
     {
         if (currentPersonality == Personality.DISABLED || currentPersonality == Personality.FREEZE)
         {
-            soundMaster.PlayBrokenSound();
+            soundMaster.PlayComplainSound();
         }
         else
         {
-            soundMaster.PlayFixSound();
+            soundMaster.PlayHappySound();
         }
+        timeSinceLastSound = Time.time;
     }
 }

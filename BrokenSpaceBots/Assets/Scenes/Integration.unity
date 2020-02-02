@@ -2525,6 +2525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oxygen Station (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7730046563223059387, guid: 02469b123b8652a42b8c24230f94d2b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7730046563223059388, guid: 02469b123b8652a42b8c24230f94d2b8,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -290,10 +290,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -491,6 +491,7 @@ MonoBehaviour:
   currentPersonality: 2
   focusStationType: Oxygen
   hps: 2
+  player: {fileID: 0}
   inventory: {fileID: 567664195}
   soundMaster: {fileID: 3740394010139139929}
 --- !u!114 &567664195
@@ -534,7 +535,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 63b2f6ec010d5c64cb17f3f73e70746b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63b2f6ec010d5c64cb17f3f73e70746b,
         type: 3}

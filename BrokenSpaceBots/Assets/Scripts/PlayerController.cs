@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         SetPlayerActive(false);
 
         botToHack.CurrentPersonality = BotController.Personality.FREEZE;
+        botToHack.soundMaster.PlayPanelSound();
+        botToHack.soundMaster.StopLoop();
 
         // set up screen
         botHackScreen.player = inventory;
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
 
         botToHack.GetComponent<PersonalityInterpreter>().Reinterpret();
-        // TODO Here goes the part where the bot starts acting up again.
+        botToHack.PlayVocal();
 
         firstPersonController.m_MouseLook.SetCursorLock(true);
         SetPlayerActive(true);

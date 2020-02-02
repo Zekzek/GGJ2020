@@ -47,11 +47,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d60828e2e7bbd564cb332c0c2a856ed1, type: 3}
   - {fileID: 8300000, guid: ec2903d471e90554cae1748c39edb2e2, type: 3}
   - {fileID: 8300000, guid: 5a27de97363ef6341a3e5775ca1377b6, type: 3}
-  botBrokenSounds:
+  botComplainSounds:
   - {fileID: 8300000, guid: 2a4acfc78cbc65f4bb7d83c273b2b3ca, type: 3}
   - {fileID: 8300000, guid: 5accab6ca3518234b88d9b62ab55f2a6, type: 3}
   - {fileID: 8300000, guid: 1aaf91b004ef2fb478547a0db9f6aff9, type: 3}
+  botPanelSounds:
+  - {fileID: 8300000, guid: c08d28534a9afe5488ae0016260115ec, type: 3}
+  - {fileID: 8300000, guid: 729ddad3dd2686f4fbf683f0319f2c73, type: 3}
+  - {fileID: 8300000, guid: 5ffdaf83bc111884e9f0bb7952d11e32, type: 3}
   botMovementSounds:
-  - {fileID: 8300000, guid: 2d1ffad9cc304994e93171aea0f5ac0a, type: 3}
-  - {fileID: 8300000, guid: f8d1bdfccd501414a8a463cfb8d6fd46, type: 3}
-  - {fileID: 8300000, guid: 8f0436983f088184999e415f48fcc1a9, type: 3}
+  - {fileID: 8300000, guid: f623e89fdf865f0489768105d3dfb089, type: 3}
+  botWeldingSounds:
+  - {fileID: 8300000, guid: 49d92652f6d7faa46b330b27baa72052, type: 3}
