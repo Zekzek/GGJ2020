@@ -28,6 +28,18 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(HackingMinigame());
     }
 
+    private void Update()
+    {
+        if (Input.GetAxis("Cancel") > 0)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+    }
+
     IEnumerator HackingMinigame()
     {
         SetPlayerActive(false);
