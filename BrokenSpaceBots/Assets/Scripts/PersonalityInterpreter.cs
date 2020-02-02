@@ -86,11 +86,11 @@ public class PersonalityInterpreter : MonoBehaviour
                     numChips++;
             }
 
-            if (numBolts > numEmpty && numBolts > numResistors && numBolts > numChips)
+            if (numBolts > numEmpty / 6f && numBolts > numResistors && numBolts > numChips)
                 botController.CurrentPersonality = BotController.Personality.SPIN;
-            else if (numResistors > numEmpty && numBolts > numResistors && numResistors > numChips)
+            else if (numResistors > numEmpty / 6f && numResistors > numBolts && numResistors > numChips)
                 botController.CurrentPersonality = BotController.Personality.STARE;
-            else if (numChips > numEmpty && numChips > numResistors && numChips > numBolts)
+            else if (numChips > numEmpty / 6f && numChips > numResistors && numChips > numBolts)
                 botController.CurrentPersonality = BotController.Personality.MIMIC;
             else
                 botController.CurrentPersonality = BotController.Personality.DISABLED;
