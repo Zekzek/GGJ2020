@@ -7,7 +7,7 @@ public class BotController : MonoBehaviour
     private const float GOAL_DISTANCE_TO_STATION = 1f;
     private const float GOAL_SQR_DISTANCE_TO_STATION = GOAL_DISTANCE_TO_STATION * GOAL_DISTANCE_TO_STATION;
 
-    private const float TIME_BETWEEN_FIX_TICKS = 0.5f;
+    private const float TIME_BETWEEN_FIX_TICKS = 1f;
 
     public enum Personality { DISABLED, MIMIC, FIX }
 
@@ -34,6 +34,9 @@ public class BotController : MonoBehaviour
             InitPersonality();
         }
     }
+
+    public float hps = 2;
+
 
     private float timeSinceLastFix;
 
@@ -90,13 +93,11 @@ public class BotController : MonoBehaviour
 
     private void CheckStationFixProximity()
     {
-        Debug.Log("check");
         if ((targetStation.transform.position - transform.position).sqrMagnitude < GOAL_SQR_DISTANCE_TO_STATION + 1)
             if (string.Equals(targetStation.Type, focusStationType))
             {
-                Debug.Log("fix");
                 timeSinceLastFix = 0;
-                targetStation.Fix(1);
+                targetStation.Fix(hps);
                 FixMostUrgentStation();
             }
         //TODO: handle distactable logic
@@ -126,7 +127,6 @@ public class BotController : MonoBehaviour
                 mostUrgentStation = station;
             }
 
-        Debug.Log("MostUrgentStation " + lowestScore);
 
         return mostUrgentStation;
     }
@@ -135,7 +135,6 @@ public class BotController : MonoBehaviour
     {
         float percentHealth = station.CurrentHealth / (float)station.MaxHealth;
         float score = (station.transform.position - transform.position).sqrMagnitude + 1000 * percentHealth;
-        Debug.Log("    " + station + ": " + score);
         return score;
     }
 }

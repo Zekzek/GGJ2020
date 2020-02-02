@@ -8,8 +8,8 @@ public class Station : MonoBehaviour
     public string Type { get => type; }
 
     [SerializeField]
-    private int currentHealth = 100;
-    public int CurrentHealth { get => currentHealth; }
+    private float currentHealth = 100;
+    public float CurrentHealth { get => currentHealth; }
 
     [SerializeField]
     private int maxHealth = 100;
@@ -17,8 +17,16 @@ public class Station : MonoBehaviour
 
     public ProgressBar progressBar;
 
+    public float dps = 1;
+
     public void Update()
     {
+
+        if(currentHealth>0)
+        {
+            currentHealth -= Time.deltaTime * dps;
+        }
+
         progressBar.current = currentHealth;
         progressBar.maximum = maxHealth;
     }
@@ -28,7 +36,7 @@ public class Station : MonoBehaviour
         currentHealth = Math.Max(0, currentHealth - amount);
     }
 
-    public void Fix(int amount)
+    public void Fix(float amount)
     {
         currentHealth = Math.Min(maxHealth, currentHealth + amount);
     }
