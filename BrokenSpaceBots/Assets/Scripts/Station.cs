@@ -15,6 +15,14 @@ public class Station : MonoBehaviour
     private int maxHealth = 100;
     public int MaxHealth { get => maxHealth; }
 
+    public ProgressBar progressBar;
+
+    public void Update()
+    {
+        progressBar.current = currentHealth;
+        progressBar.maximum = maxHealth;
+    }
+
     public void Damage(int amount)
     {
         currentHealth = Math.Max(0, currentHealth - amount);

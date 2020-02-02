@@ -17,7 +17,7 @@ public class ItemPickUp : MonoBehaviour
 
     private void PickUpNearbyItems()
     {
-        Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 1f);
+        Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, 2f);
         foreach (Collider collider in nearbyObjects)
         {
             GroundItem groundItem = collider.GetComponent<GroundItem>();
