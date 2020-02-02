@@ -27,7 +27,8 @@ public class WinCondition : MonoBehaviour
         bool allMaxHealth = true;
         foreach (var s in station)
         {
-            if (0.9f * s.CurrentHealth < s.MaxHealth)
+            //if any station has less than 90% health
+            if (s.CurrentHealth < s.MaxHealth * 0.9f)
             {
                 allMaxHealth = false;
             }
