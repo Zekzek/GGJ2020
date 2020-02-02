@@ -18,21 +18,21 @@ public class WinCondition : MonoBehaviour
     }
     void Start()
     {
-        station =  FindObjectsOfType(typeof(Station)) as Station[];
+        station = FindObjectsOfType(typeof(Station)) as Station[];
     }
 
     // Update is called once per frame
     void Update()
     {
         bool allMaxHealth = true;
-        foreach(var s in station)
+        foreach (var s in station)
         {
-            if(s.CurrentHealth<s.MaxHealth)
+            if (0.9f * s.CurrentHealth < s.MaxHealth)
             {
-                allMaxHealth=false;
+                allMaxHealth = false;
             }
         }
-        if(allMaxHealth)
+        if (allMaxHealth)
         {
             Win();
         }
