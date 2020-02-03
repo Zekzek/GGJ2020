@@ -100,9 +100,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.5019608, b: 0.57490486, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -494,6 +494,10 @@ MonoBehaviour:
   player: {fileID: 0}
   inventory: {fileID: 567664195}
   soundMaster: {fileID: 3740394010139139929}
+  botHat: {fileID: 6408352053822042915}
+  botLight: {fileID: 1673889360}
+  badHat: {fileID: 2100000, guid: 06f196a33fd97db47a15d3d5c3869fa7, type: 2}
+  goodHat: {fileID: 2100000, guid: 926ea219372c4554e9031d652d909589, type: 2}
 --- !u!114 &567664195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +616,12 @@ PrefabInstance:
 --- !u!4 &8541223929781548524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 63b2f6ec010d5c64cb17f3f73e70746b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3743108286693007094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6408352053822042915 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 63b2f6ec010d5c64cb17f3f73e70746b,
     type: 3}
   m_PrefabInstance: {fileID: 3743108286693007094}
   m_PrefabAsset: {fileID: 0}
