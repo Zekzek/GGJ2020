@@ -92,7 +92,7 @@ public class BotController : MonoBehaviour
     private void InitPersonality()
     {
         soundMaster.StopLoop();
-        agent.ResetPath();
+        //agent.isStopped = true;
 
         if (agent.isStopped && (CurrentPersonality == Personality.FIX || CurrentPersonality == Personality.MIMIC))
             agent.isStopped = false;
