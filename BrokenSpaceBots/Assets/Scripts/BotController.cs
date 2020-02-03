@@ -53,6 +53,12 @@ public class BotController : MonoBehaviour
 
     public BotSoundMaster soundMaster;
 
+    public MeshRenderer botHat;
+    public Light botLight;
+
+    public Material badHat;
+    public Material goodHat;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -86,7 +92,7 @@ public class BotController : MonoBehaviour
     private void InitPersonality()
     {
         soundMaster.StopLoop();
-        agent.ResetPath();
+        //agent.isStopped = true;
 
         if (agent.isStopped && (CurrentPersonality == Personality.FIX || CurrentPersonality == Personality.MIMIC))
             agent.isStopped = false;
@@ -97,8 +103,10 @@ public class BotController : MonoBehaviour
         {
             targetStation = null;
             FixMostUrgentStation();
-            }
         }
+
+        UpdateHat();
+    }
 
     private void FixMostUrgentStation()
     {
@@ -186,14 +194,30 @@ public class BotController : MonoBehaviour
 
     public void PlayVocal()
     {
-        if (currentPersonality == Personality.DISABLED || currentPersonality == Personality.FREEZE)
+        if (currentPersonality != Personality.FIX)
         {
             soundMaster.PlayComplainSound();
+            botHat.material = badHat;
         }
         else
         {
             soundMaster.PlayHappySound();
+            botHat.material = goodHat;
         }
         timeSinceLastSound = Time.time;
+    }
+
+    public void UpdateHat()
+    {
+        if (currentPersonality != Personality.FIX)
+        {
+            botHat.material = badHat;
+            botLight.color = new Color(1,0.5f,0.5f);
+        }
+        else
+        {
+            botHat.material = goodHat;
+            botLight.color = new Color(0.5f, 1f, 0.5f);
+        }
     }
 }
