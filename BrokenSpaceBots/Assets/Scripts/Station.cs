@@ -15,9 +15,14 @@ public class Station : MonoBehaviour
     private int maxHealth = 100;
     public int MaxHealth { get => maxHealth; }
 
-    public ProgressBar progressBar;
+    public StationUICanvas stationUI;
 
     public float dps = 1;
+
+    public void Start()
+    {
+        stationUI.StationName = type;
+    }
 
     public void Update()
     {
@@ -27,8 +32,7 @@ public class Station : MonoBehaviour
             currentHealth -= Time.deltaTime * dps;
         }
 
-        progressBar.current = currentHealth;
-        progressBar.maximum = maxHealth;
+        stationUI.SetHealth(currentHealth, maxHealth);
     }
 
     public void Damage(int amount)

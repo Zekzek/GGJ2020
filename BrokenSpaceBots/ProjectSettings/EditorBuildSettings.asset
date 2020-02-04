@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LevelBox.unity
-    guid: 5badf04fdd382fe40827cf2fba82989e
-  - enabled: 1
     path: Assets/Scenes/Corridors.unity
     guid: 62c69f5413f1ca24eb3d7dbb3c8f3cbc
+  - enabled: 1
+    path: Assets/Scenes/LevelBox.unity
+    guid: 5badf04fdd382fe40827cf2fba82989e
   m_configObjects: {}
