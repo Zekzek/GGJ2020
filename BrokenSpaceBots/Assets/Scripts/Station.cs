@@ -19,6 +19,8 @@ public class Station : MonoBehaviour
 
     public float dps = 1;
 
+    public AudioSource alarmSound;
+
     public void Start()
     {
         stationUI.StationName = type;
@@ -27,9 +29,18 @@ public class Station : MonoBehaviour
     public void Update()
     {
 
-        if(currentHealth>0)
+        if(currentHealth < maxHealth * 0.95f)
         {
-            currentHealth -= Time.deltaTime * dps;
+            if (currentHealth > 0)
+            {
+                currentHealth -= Time.deltaTime * dps;
+            }
+        }
+        else if (alarmSound)
+        {
+            alarmSound.Stop();
+            Destroy(alarmSound);
+            alarmSound = null;
         }
 
         stationUI.SetHealth(currentHealth, maxHealth);

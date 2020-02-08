@@ -490,7 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPersonality: 1
   focusStationType: 
-  hps: 5
+  hps: 10
   player: {fileID: 0}
   inventory: {fileID: 567664195}
   soundMaster: {fileID: 3740394010139139929}
